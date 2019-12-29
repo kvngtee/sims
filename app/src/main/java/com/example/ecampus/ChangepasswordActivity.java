@@ -1,22 +1,18 @@
 package com.example.ecampus;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import es.dmoral.toasty.Toasty;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class ForgotpasswordActivity extends AppCompatActivity {
+public class ChangepasswordActivity extends AppCompatActivity {
 
-    private EditText regEmail;
+    private EditText newpass, confirmpass;
     private Button btnReset;
     private TextView tvback;
     private ProgressBar progressBar;
@@ -24,9 +20,10 @@ public class ForgotpasswordActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forgotpassword);
+        setContentView(R.layout.activity_changepassword);
 
-        regEmail = findViewById(R.id.registeredemail);
+        newpass = findViewById(R.id.new_password);
+        confirmpass = findViewById(R.id.confirm_password);
         btnReset = findViewById(R.id.resetpassword);
         tvback = findViewById(R.id.goback);
         progressBar = findViewById(R.id.progressBar3);
@@ -36,7 +33,7 @@ public class ForgotpasswordActivity extends AppCompatActivity {
         tvback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ForgotpasswordActivity.this, LoginActivity.class));
+                startActivity(new Intent(ChangepasswordActivity.this, LoginActivity.class));
                 finish();
             }
         });

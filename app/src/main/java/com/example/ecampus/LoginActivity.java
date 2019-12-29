@@ -117,9 +117,11 @@ public class LoginActivity extends AppCompatActivity {
         forgotpass = findViewById(R.id.forgot_pass);
         forgotpass.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
 
-                //show dialog
+                Intent intent = new Intent(LoginActivity.this, ChangepasswordActivity.class);
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                startActivity(intent);
 
             }
         });

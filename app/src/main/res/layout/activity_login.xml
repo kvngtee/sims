@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     android:background="#252525"
     android:clipChildren="false"
+    android:fitsSystemWindows="true"
     android:clipToPadding="false"
     android:orientation="vertical"
-    android:fitsSystemWindows="true"
     tools:context=".LoginActivity">
 
     <androidx.cardview.widget.CardView
@@ -86,8 +86,8 @@
 
         <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/userpic"
-            android:layout_width="76dp"
-            android:layout_height="76dp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
             android:background="@android:color/transparent"
             android:elevation="8dp"
             android:focusable="true"

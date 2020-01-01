@@ -16,7 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".ProfileActivity">
+
+        </activity>
         <activity android:name=".WebsiteActivity" />
         <activity android:name=".CalculatorActivity" />
         <activity android:name=".StaffrecordActivity" />
@@ -40,8 +42,7 @@
         <activity android:name=".WelcomeActivity" />
         <activity android:name=".ChangepasswordActivity" />
         <activity
-            android:name=".LoginActivity"
-            android:windowSoftInputMode="stateHidden" />
+            android:name=".LoginActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

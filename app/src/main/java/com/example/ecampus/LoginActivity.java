@@ -68,16 +68,28 @@ public class LoginActivity extends AppCompatActivity {
 
 
         Fname.setVisibility(View.GONE);
+        StudentID.getText().toString().trim();
 
         StudentID.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onFocusChange(View view, boolean hasFocus) {
+            public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    Toast.makeText(getApplicationContext(), "Focus Lose", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Get Focus", Toast.LENGTH_SHORT).show();
-                }
+                    //has focus
+                    if (StudentID.length() == 17) {
+                        //check if user id is in fire store and display data
+                        Toast.makeText(getApplicationContext(), "17", Toast.LENGTH_LONG).show();
 
+                    } else {
+
+                        //user id not in firestore
+                        // Toast.makeText(getApplicationContext(), "Student ID not registered!!\nSee admin to get registered!", Toast.LENGTH_LONG).show();
+
+                    }
+
+                } else {
+                    //has no focus
+
+                }
             }
         });
 
@@ -95,9 +107,19 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
+                if (StudentID.length() == 17) {
+                    //check if user id is in fire store and display data
+                    Toast.makeText(getApplicationContext(), "17", Toast.LENGTH_LONG).show();
+
+
+                } else {
+
+                    //user id not in firestore
+                    // Toast.makeText(getApplicationContext(), "Student ID not registered!!\nSee admin to get registered!", Toast.LENGTH_LONG).show();
+
+                }
             }
         });
-
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,6 +189,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
 
     @Override
     protected void onResume() {

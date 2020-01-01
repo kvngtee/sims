@@ -47,6 +47,7 @@
       <w>firebasesearch</w>
       <w>firestore</w>
       <w>firsttime</w>
+      <w>fname</w>
       <w>forgotexp</w>
       <w>forgotpass</w>
       <w>forgotpassword</w>
@@ -169,6 +170,8 @@
       <w>webview</w>
       <w>welcomebg</w>
       <w>welcomebtn</w>
+      <w>welcomeimage</w>
+      <w>welomeimage</w>
       <w>wishlist</w>
     </words>
   </dictionary>

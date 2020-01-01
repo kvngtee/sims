@@ -5,13 +5,14 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -34,8 +36,9 @@ import es.dmoral.toasty.Toasty;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText StudentID, Password;
-    private TextView Fname, forgotpass;
+    private TextView Fname, info, forgotpass;
     private Button button;
+    private CardView cardview;
     private CircularImageView userpic;
     private ProgressDialog mProgressDialog;
     private int backButtonCount = 0;
@@ -59,16 +62,47 @@ public class LoginActivity extends AppCompatActivity {
         Password = findViewById(R.id.password);
         button = findViewById(R.id.loginbtn);
         Fname = findViewById(R.id.Fname);
+        info = findViewById(R.id.info);
         userpic = findViewById(R.id.userpic);
+        cardview = findViewById(R.id.cardview);
 
 
         Fname.setVisibility(View.GONE);
-        Password.setVisibility(View.GONE);
-        button.setText("Next");
+
+        StudentID.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (!hasFocus) {
+                    Toast.makeText(getApplicationContext(), "Focus Lose", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Get Focus", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+        StudentID.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                button.setBackgroundResource(R.drawable.clicked);
                 //Query Firestore and retrieve the document
                 Source source = Source.SERVER;
                 db.collection("students")
@@ -82,22 +116,17 @@ public class LoginActivity extends AppCompatActivity {
                                     QuerySnapshot snapshot = task.getResult();
                                     if (snapshot.getDocuments().size() == 1) {
                                         Fname.setVisibility(View.VISIBLE);
+                                        info.setText("Please enter your password \nto continue.");
                                         Fname.setText(snapshot.getDocuments().get(0).get("fname").toString() + ".");
                                         Picasso.get().load(snapshot.getDocuments().get(0).get("image").toString()).placeholder(R.drawable.user).into(userpic);
 
-                                        // slide-down animation
-                                        Animation slidedown = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_down);
-                                        if (Password.getVisibility() == View.GONE) {
-                                            Password.setVisibility(View.VISIBLE);
-                                            Password.startAnimation(slidedown);
-                                        }
-                                        button.setText("Login");
+                                        //if ID is cleared
 
 
                                         Log.d("GET_DATA", "DocumentSnapshot data: " + task.getResult().getDocuments());
-                                        Intent intent = new Intent(LoginActivity.this, HomescreenActivity.class);
-                                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                                        startActivity(intent);
+                                        //Intent intent = new Intent(LoginActivity.this, HomescreenActivity.class);
+                                        //overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                                        //startActivity(intent);
                                         Toasty.success(LoginActivity.this, "Welcome!", Toast.LENGTH_SHORT, true).show();
 
                                     } else {
@@ -123,6 +152,17 @@ public class LoginActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                 startActivity(intent);
 
+            }
+        });
+
+
+        cardview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cardview.setCardBackgroundColor(Color.parseColor("#6C63Ff"));
+                Intent intent = new Intent(LoginActivity.this, WelcomeActivity.class);
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                startActivity(intent);
             }
         });
 

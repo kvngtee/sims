@@ -1,7 +1,6 @@
 package com.example.ecampus;
 
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,17 +17,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.Source;
 import com.mikhaellopez.circularimageview.CircularImageView;
-import com.squareup.picasso.Picasso;
 
 import es.dmoral.toasty.Toasty;
 
@@ -125,42 +118,10 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 button.setBackgroundResource(R.drawable.clicked);
-                //Query Firestore and retrieve the document
-                Source source = Source.SERVER;
-                db.collection("students")
-                        .whereEqualTo("student_ID", StudentID.getText().toString())
-                        .get(source)
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @SuppressLint("SetTextI18n")
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    QuerySnapshot snapshot = task.getResult();
-                                    if (snapshot.getDocuments().size() == 1) {
-                                        Fname.setVisibility(View.VISIBLE);
-                                        info.setText("Please enter your password \nto continue.");
-                                        Fname.setText(snapshot.getDocuments().get(0).get("fname").toString() + ".");
-                                        Picasso.get().load(snapshot.getDocuments().get(0).get("image").toString()).placeholder(R.drawable.user).into(userpic);
-
-                                        //if ID is cleared
-
-
-                                        Log.d("GET_DATA", "DocumentSnapshot data: " + task.getResult().getDocuments());
-                                        //Intent intent = new Intent(LoginActivity.this, HomescreenActivity.class);
-                                        //overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                                        //startActivity(intent);
-                                        Toasty.success(LoginActivity.this, "Welcome!", Toast.LENGTH_SHORT, true).show();
-
-                                    } else {
-                                        Log.d("GET_DATA", "No such document");
-                                        Toasty.error(getApplicationContext(), "Invalid Student ID...please try again").show();
-                                    }
-                                } else {
-                                    Toasty.error(getApplicationContext(), "Couldn't connect to the internet").show();
-                                    Log.d("GET_DATA", "get failed with ", task.getException());
-                                }
-                            }
-                        });
+                Intent intent = new Intent(LoginActivity.this, HomescreenActivity.class);
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                startActivity(intent);
+                Toasty.success(LoginActivity.this, "Welcome!", Toast.LENGTH_SHORT, true).show();
 
             }
         });

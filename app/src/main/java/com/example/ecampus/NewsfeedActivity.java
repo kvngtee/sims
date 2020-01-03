@@ -1,13 +1,11 @@
 package com.example.ecampus;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.mikhaellopez.circularimageview.CircularImageView;
 
@@ -29,7 +27,9 @@ public class NewsfeedActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getApplicationContext(), "Profile", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(NewsfeedActivity.this, ProfileActivity.class);
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                startActivity(intent);
             }
         });
 

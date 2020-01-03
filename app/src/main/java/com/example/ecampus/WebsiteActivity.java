@@ -1,23 +1,23 @@
 package com.example.ecampus;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
+import android.view.WindowManager;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 public class WebsiteActivity extends AppCompatActivity {
     private WebView webView;
 
     ProgressBar progressBar;
+    private CardView cardview;
 
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -25,6 +25,22 @@ public class WebsiteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_website);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
+        cardview = findViewById(R.id.cardview);
+
+
+        cardview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cardview.setCardBackgroundColor(Color.parseColor("#6C63Ff"));
+                Intent intent = new Intent(WebsiteActivity.this, HomescreenActivity.class);
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                startActivity(intent);
+            }
+        });
 
 
         webView = findViewById(R.id.webview);

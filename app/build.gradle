@@ -34,7 +34,9 @@ dependencies {
     implementation 'com.daimajia.easing:library:2.1@aar'
     implementation 'com.daimajia.androidanimations:library:2.3@aar'
     implementation 'com.mikhaellopez:circularimageview:3.0.2'
-    implementation 'net.colindodd:gradientlayout:1.2'
+    implementation 'com.github.florent37:diagonallayout:1.0.9'
+    implementation 'com.flaviofaria:kenburnsview:1.0.7'
+
 
     //Stylish edittextbox
     implementation 'com.github.florent37:materialtextfield:1.0.7'

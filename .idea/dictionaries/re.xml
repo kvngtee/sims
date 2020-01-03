@@ -5,6 +5,7 @@
       <w>accalreadylogin</w>
       <w>addcamera</w>
       <w>adminimage</w>
+      <w>agreementtb</w>
       <w>alreadyhaveacc</w>
       <w>alreadyhaveacclogin</w>
       <w>androidhive</w>
@@ -27,10 +28,15 @@
       <w>cibt</w>
       <w>confirmpassword</w>
       <w>confirmpasswordedittext</w>
+      <w>darkmode</w>
+      <w>darkmodetoggle</w>
       <w>dateposted</w>
       <w>departedittext</w>
       <w>descs</w>
       <w>detailslayout</w>
+      <w>detailstb</w>
+      <w>developertb</w>
+      <w>diagonallayout</w>
       <w>ecampus</w>
       <w>editprofile</w>
       <w>editprofileicon</w>
@@ -40,6 +46,7 @@
       <w>emailedittext</w>
       <w>emoji</w>
       <w>examsttb</w>
+      <w>exmasttb</w>
       <w>facelog</w>
       <w>fbbtn</w>
       <w>fbra</w>
@@ -68,6 +75,7 @@
       <w>imageforum</w>
       <w>imageview</w>
       <w>incorrectpass</w>
+      <w>instagram</w>
       <w>kldshvciohodsichoisd</w>
       <w>kvngtee</w>
       <w>lecturesttb</w>
@@ -109,11 +117,14 @@
       <w>newsfeedtb</w>
       <w>nextbtn</w>
       <w>noticetb</w>
+      <w>notificationtoggle</w>
+      <w>notificationtogglebtn</w>
       <w>nterms</w>
       <w>numberedittext</w>
       <w>nwelcome</w>
       <w>passtitle</w>
       <w>passwordedittext</w>
+      <w>personaldetails</w>
       <w>preloader</w>
       <w>prevbtn</w>
       <w>pristina</w>
@@ -142,6 +153,7 @@
       <w>searchitem</w>
       <w>searchview</w>
       <w>settingpic</w>
+      <w>settingstb</w>
       <w>signintv</w>
       <w>signup</w>
       <w>signupbtn</w>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#121212"
-    tools:context=".ProfileActivity">
+    tools:context=".activities.ProfileActivity">
 
 
     <ScrollView
@@ -59,7 +59,9 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="20dp"
                         android:background="@drawable/settings"
-                        android:elevation="8dp" />
+                        android:clickable="true"
+                        android:elevation="8dp"
+                        android:focusable="true" />
 
                 </LinearLayout>
 
@@ -149,9 +151,9 @@
                         android:id="@+id/info"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/proximalight"
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="20dp"
+                        android:fontFamily="@font/proximalight"
                         android:text="This student is a verified student \nof the institution."
                         android:textAlignment="center"
                         android:textColor="#8A8A8A"
@@ -193,7 +195,7 @@
 
 
                     <LinearLayout
-                android:layout_width="match_parent"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
@@ -203,20 +205,20 @@
                         <ImageView
                             android:layout_width="16dp"
                             android:layout_height="16dp"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="20dp"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="20dp"
                             android:src="@drawable/department" />
 
-                <TextView
-                    android:id="@+id/department"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="8dp"
-                    android:fontFamily="@font/proximasemibold"
-                    android:text="Bsc. Information Technology"
-                    android:textColor="#F5F2F2"
-                    android:textSize="17sp" />
+                        <TextView
+                            android:id="@+id/department"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="8dp"
+                            android:fontFamily="@font/proximasemibold"
+                            android:text="Bsc. Information Technology"
+                            android:textColor="#F5F2F2"
+                            android:textSize="17sp" />
 
                     </LinearLayout>
 
@@ -262,20 +264,20 @@
                         <ImageView
                             android:layout_width="16dp"
                             android:layout_height="16dp"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="20dp"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="20dp"
                             android:src="@drawable/dob" />
 
-                <TextView
-                    android:id="@+id/date_of_birth"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="8dp"
-                    android:fontFamily="@font/proximasemibold"
-                    android:text="16-06-1997"
-                    android:textColor="#F5F2F2"
-                    android:textSize="17sp" />
+                        <TextView
+                            android:id="@+id/date_of_birth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="8dp"
+                            android:fontFamily="@font/proximasemibold"
+                            android:text="16-06-1997"
+                            android:textColor="#F5F2F2"
+                            android:textSize="17sp" />
 
                     </LinearLayout>
 
@@ -310,34 +312,33 @@
                         android:textSize="12sp" />
 
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:orientation="horizontal">
 
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="20dp"
+                            android:src="@drawable/nationality" />
 
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="20dp"
-                    android:src="@drawable/nationality" />
+                        <TextView
+                            android:id="@+id/nationality"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="8dp"
+                            android:fontFamily="@font/proximasemibold"
+                            android:text="Ghanaian"
+                            android:textColor="#F5F2F2"
+                            android:textSize="17sp" />
 
-                <TextView
-                    android:id="@+id/nationality"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="8dp"
-                    android:fontFamily="@font/proximasemibold"
-                    android:text="Ghanaian"
-                    android:textColor="#F5F2F2"
-                    android:textSize="17sp" />
-
-            </LinearLayout>
+                    </LinearLayout>
 
 
                 </LinearLayout>
@@ -380,20 +381,20 @@
                         <ImageView
                             android:layout_width="16dp"
                             android:layout_height="16dp"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="20dp"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="20dp"
                             android:src="@drawable/email" />
 
-                <TextView
-                    android:id="@+id/email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="8dp"
-                    android:fontFamily="@font/proximasemibold"
-                    android:text="asieduprince123@gmail.com"
-                    android:textColor="#F5F2F2"
-                    android:textSize="17sp" />
+                        <TextView
+                            android:id="@+id/email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="8dp"
+                            android:fontFamily="@font/proximasemibold"
+                            android:text="asieduprince123@gmail.com"
+                            android:textColor="#F5F2F2"
+                            android:textSize="17sp" />
 
                     </LinearLayout>
 
@@ -439,20 +440,20 @@
                         <ImageView
                             android:layout_width="16dp"
                             android:layout_height="16dp"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="20dp"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="20dp"
                             android:src="@drawable/phone" />
 
-                <TextView
-                    android:id="@+id/phone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="8dp"
-                    android:fontFamily="@font/proximasemibold"
-                    android:text="02072491353"
-                    android:textColor="#F5F2F2"
-                    android:textSize="17sp" />
+                        <TextView
+                            android:id="@+id/phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="8dp"
+                            android:fontFamily="@font/proximasemibold"
+                            android:text="02072491353"
+                            android:textColor="#F5F2F2"
+                            android:textSize="17sp" />
 
 
                     </LinearLayout>

@@ -1,4 +1,4 @@
-package com.example.ecampus;
+package com.example.ecampus.activities;
 
 
 import android.app.ProgressDialog;
@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.example.ecampus.R;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
@@ -31,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText StudentID, Password;
     private TextView Fname, info, forgotpass;
     private Button button;
+    private CheckBox rememberMe;
     private CardView cardview;
     private CircularImageView userpic;
     private ProgressDialog mProgressDialog;
@@ -43,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
@@ -50,6 +54,8 @@ public class LoginActivity extends AppCompatActivity {
         // Access a Cloud Firestore instance from your Activity
         db = FirebaseFirestore.getInstance();
 
+        sharedPrefs = getSharedPreferences("APP_PREFS", MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharedPrefs.edit();
 
         StudentID = findViewById(R.id.studentid);
         Password = findViewById(R.id.password);
@@ -58,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
         info = findViewById(R.id.info);
         userpic = findViewById(R.id.userpic);
         cardview = findViewById(R.id.cardview);
+        rememberMe = findViewById(R.id.rememberMe);
 
 
         Fname.setVisibility(View.GONE);
@@ -117,11 +124,19 @@ public class LoginActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //checking if the rememebr me if checked
+                if (rememberMe.isChecked() == true) {
+                    editor.putBoolean("isLoggedIn", true);
+                    editor.putString("userID", "");
+                    editor.apply();
+                }
+
                 button.setBackgroundResource(R.drawable.clicked);
                 Intent intent = new Intent(LoginActivity.this, HomescreenActivity.class);
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                 startActivity(intent);
                 Toasty.success(LoginActivity.this, "Welcome!", Toast.LENGTH_SHORT, true).show();
+
 
             }
         });
@@ -188,6 +203,5 @@ public class LoginActivity extends AppCompatActivity {
         }, 2000);
     }
 
-    public void onCheckboxClicked(View view) {
-    }
+
 }

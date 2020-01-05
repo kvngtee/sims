@@ -1,4 +1,4 @@
-package com.example.ecampus;
+package com.example.ecampus.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,15 +9,17 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-public class StaffrecordActivity extends AppCompatActivity {
+import com.example.ecampus.R;
+
+public class ForumActivity extends AppCompatActivity {
 
     private CardView cardview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_staffrecord);
-
+        setContentView(R.layout.activity_forum);
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
@@ -29,11 +31,12 @@ public class StaffrecordActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cardview.setCardBackgroundColor(Color.parseColor("#6C63Ff"));
-                Intent intent = new Intent(StaffrecordActivity.this, HomescreenActivity.class);
+                Intent intent = new Intent(ForumActivity.this, HomescreenActivity.class);
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                 startActivity(intent);
             }
         });
+
 
     }
 }

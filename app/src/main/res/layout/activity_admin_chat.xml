@@ -6,7 +6,7 @@
     android:fitsSystemWindows="true"
     android:background="#121212"
     android:focusableInTouchMode="true"
-    tools:context=".AdminChatActivity">
+    tools:context=".activities.AdminChatActivity">
 
 
     <TextView

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#121212"
     android:orientation="vertical"
-    tools:context=".CalculatorActivity">
+    tools:context=".activities.CalculatorActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/recordtb"

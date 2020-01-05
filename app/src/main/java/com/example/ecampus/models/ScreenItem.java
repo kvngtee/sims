@@ -1,6 +1,4 @@
-package com.example.ecampus;
-
-import android.icu.text.CaseMap;
+package com.example.ecampus.models;
 
 public class ScreenItem {
 

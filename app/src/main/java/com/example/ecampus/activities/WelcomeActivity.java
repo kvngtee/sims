@@ -1,4 +1,4 @@
-package com.example.ecampus;
+package com.example.ecampus.activities;
 
 
 import android.content.Intent;
@@ -8,6 +8,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.ecampus.R;
 
 
 public class WelcomeActivity extends AppCompatActivity {

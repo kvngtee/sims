@@ -15,19 +15,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DeveloperActivity"></activity>
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".WebsiteActivity" />
-        <activity android:name=".CalculatorActivity" />
-        <activity android:name=".StaffrecordActivity" />
-        <activity android:name=".TimetableActivity" />
-        <activity android:name=".NoticeActivity" />
-        <activity android:name=".ForumActivity" />
-        <activity android:name=".NewsfeedActivity" />
-        <activity android:name=".AdminChatActivity" />
+        <activity android:name=".activities.DeveloperActivity"></activity>
+        <activity android:name=".activities.SettingsActivity" />
+        <activity android:name=".activities.ProfileActivity" />
+        <activity android:name=".activities.WebsiteActivity" />
+        <activity android:name=".activities.CalculatorActivity" />
+        <activity android:name=".activities.StaffrecordActivity" />
+        <activity android:name=".activities.TimetableActivity" />
+        <activity android:name=".activities.NoticeActivity" />
+        <activity android:name=".activities.ForumActivity" />
+        <activity android:name=".activities.NewsfeedActivity" />
+        <activity android:name=".activities.AdminChatActivity" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".activities.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
@@ -36,11 +36,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PostDetailActivity" />
-        <activity android:name=".HomescreenActivity" />
-        <activity android:name=".WelcomeActivity" />
-        <activity android:name=".ChangepasswordActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".activities.PostDetailActivity" />
+        <activity android:name=".activities.HomescreenActivity" />
+        <activity android:name=".activities.WelcomeActivity" />
+        <activity android:name=".activities.ChangepasswordActivity" />
+        <activity android:name=".activities.LoginActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

@@ -1,4 +1,4 @@
-package com.example.ecampus;
+package com.example.ecampus.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -13,6 +13,8 @@ import android.widget.ProgressBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.example.ecampus.R;
+
 public class WebsiteActivity extends AppCompatActivity {
     private WebView webView;
 
@@ -25,6 +27,7 @@ public class WebsiteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_website);
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);

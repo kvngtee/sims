@@ -1,4 +1,4 @@
-package com.example.ecampus;
+package com.example.ecampus.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,14 +9,17 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-public class CalculatorActivity extends AppCompatActivity {
+import com.example.ecampus.R;
+
+public class TimetableActivity extends AppCompatActivity {
 
     private CardView cardview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calculator);
+        setContentView(R.layout.activity_timetable);
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
@@ -28,10 +31,12 @@ public class CalculatorActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cardview.setCardBackgroundColor(Color.parseColor("#6C63Ff"));
-                Intent intent = new Intent(CalculatorActivity.this, HomescreenActivity.class);
+                Intent intent = new Intent(TimetableActivity.this, HomescreenActivity.class);
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                 startActivity(intent);
             }
         });
+
+
     }
 }

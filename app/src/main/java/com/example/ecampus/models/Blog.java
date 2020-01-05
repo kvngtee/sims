@@ -1,17 +1,30 @@
-package com.example.ecampus;
+package com.example.ecampus.models;
+
+import java.util.Date;
 
 public class Blog {
+
+    private String id;
     private String image;
     private String title;
     private String desc;
-    private String date;
+    private Date date;
 
-    public Blog(String image, String title, String desc, String date) {
+    public Blog(String id, String image, String title, String desc, Date date) {
+        this.id = id;
         this.image = image;
         this.title = title;
         this.desc = desc;
         this.date = date;
 
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getImage() {
@@ -38,11 +51,11 @@ public class Blog {
         this.desc = desc;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

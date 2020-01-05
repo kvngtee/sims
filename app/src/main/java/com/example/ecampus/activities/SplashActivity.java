@@ -1,12 +1,14 @@
-package com.example.ecampus;
+package com.example.ecampus.activities;
 
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.example.ecampus.R;
 
 public class SplashActivity extends Activity {
 

@@ -1,36 +1,39 @@
-package com.example.ecampus;
+package com.example.ecampus.activities;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
-public class ForumActivity extends AppCompatActivity {
+import com.example.ecampus.R;
 
-    private CardView cardview;
+public class ProfileActivity extends AppCompatActivity {
+
+    private ImageButton settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forum);
+        setContentView(R.layout.activity_profile);
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
-        cardview = findViewById(R.id.cardview);
 
+        settings = findViewById(R.id.settings);
 
-        cardview.setOnClickListener(new View.OnClickListener() {
+        settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cardview.setCardBackgroundColor(Color.parseColor("#6C63Ff"));
-                Intent intent = new Intent(ForumActivity.this, HomescreenActivity.class);
+                Intent intent = new Intent(ProfileActivity.this, SettingsActivity.class);
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                 startActivity(intent);
+
             }
         });
 

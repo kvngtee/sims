@@ -1,10 +1,11 @@
-package com.example.ecampus;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.ecampus.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.ecampus.R;
 
 public class AdminChatActivity extends AppCompatActivity {
 
@@ -12,6 +13,7 @@ public class AdminChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_chat);
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
     }
 
 

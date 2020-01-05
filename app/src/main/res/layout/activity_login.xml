@@ -9,7 +9,7 @@
     android:fitsSystemWindows="true"
     android:clipToPadding="false"
     android:orientation="vertical"
-    tools:context=".LoginActivity">
+    tools:context=".activities.LoginActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview"
@@ -155,16 +155,17 @@
             android:orientation="horizontal">
 
             <CheckBox
+                android:id="@+id/rememberMe"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:checked="false"
                 android:buttonTint="#8A8A8A"
+                android:checked="false"
                 android:onClick="onCheckboxClicked"
                 android:shadowColor="#FF6F00"
-                android:textColor="#8A8A8A"
-                android:text="Remember me" />
+                android:text="Remember me"
+                android:textColor="#8A8A8A" />
 
             <TextView
                 android:id="@+id/forgot_pass"

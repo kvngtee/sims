@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#121212"
     android:scrollbars="vertical"
-    tools:context=".PostDetailActivity">
+    tools:context=".activities.PostDetailActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/mtoolbar"

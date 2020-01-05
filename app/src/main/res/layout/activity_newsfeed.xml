@@ -70,7 +70,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tablayout"
-        app:tabMode="scrollable"
+        app:tabMode="auto"
         app:tabTextAppearance="@style/tab_text"
         app:tabSelectedTextColor="@android:color/white"
         android:textAlignment="center"
@@ -88,12 +88,12 @@
             android:textAlignment="center"
             android:text="Latest"/>
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:text="Today"/>
-
+        <!-- <com.google.android.material.tabs.TabItem
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:textAlignment="center"
+             android:text="Today"/>
+ -->
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

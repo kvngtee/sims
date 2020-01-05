@@ -14,6 +14,7 @@
       <w>backbutton</w>
       <w>bluesquare</w>
       <w>bubblebtn</w>
+      <w>callintent</w>
       <w>cameraicon</w>
       <w>cammpus</w>
       <w>campusbg</w>
@@ -44,6 +45,7 @@
       <w>edittextbox</w>
       <w>edittextdepart</w>
       <w>emailedittext</w>
+      <w>emailintent</w>
       <w>emoji</w>
       <w>examsttb</w>
       <w>exmasttb</w>

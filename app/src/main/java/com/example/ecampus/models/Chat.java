@@ -1,4 +1,4 @@
-package com.example.ecampus;
+package com.example.ecampus.models;
 
 public class Chat {
     private String mName;

@@ -3,6 +3,7 @@ package com.example.ecampus.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -26,6 +27,9 @@ public class SplashActivity extends Activity {
                 .duration(5000)
                 .playOn(findViewById(R.id.logo));
 
+
+        final SharedPreferences sharedPrefs = getSharedPreferences("APP_PREFS", MODE_PRIVATE);
+
         new Handler().postDelayed(new Runnable() {
 
             /*
@@ -36,8 +40,12 @@ public class SplashActivity extends Activity {
             @Override
             public void run() {
                 // This method will be executed once the timer is over
-                startActivity(new Intent(SplashActivity.this,WelcomeActivity.class));
-                //overridePendingTransition(R.anim.zoom_in, R.anim.zoom_out);
+                if (sharedPrefs.getBoolean("isLoggedIn", false)){
+                    startActivity(new Intent(SplashActivity.this, HomescreenActivity.class));
+
+                }else{
+                    startActivity(new Intent(SplashActivity.this, WelcomeActivity.class));
+                }//overridePendingTransition(R.anim.zoom_in, R.anim.zoom_out);
                 finish();
             }
         }, SPLASH_TIME_OUT);

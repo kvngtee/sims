@@ -32,7 +32,7 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mStartBtn.setBackgroundResource(R.drawable.clicked);
-                startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+                                startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                 finish();
             }

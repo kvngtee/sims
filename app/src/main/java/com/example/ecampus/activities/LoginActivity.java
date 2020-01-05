@@ -123,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                     //Query Firestore and retrieve the document
                     Source source = Source.SERVER;
                     db.collection("students")
-                            .whereEqualTo("student_ID", StudentID.getText().toString())
+                            .whereEqualTo("studentID", StudentID.getText().toString())
                             .get(source)
                             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                 @SuppressLint("SetTextI18n")
@@ -136,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
                                             Fname.setVisibility(View.VISIBLE);
 
                                             info.setText("Please enter your password \nto continue.");
-                                            Fname.setText(snapshot.getDocuments().get(0).get("fname").toString() + ".");
+                                            Fname.setText(snapshot.getDocuments().get(0).get("firstName").toString() + ".");
                                             Picasso.get().load(snapshot.getDocuments().get(0).getString("image")).placeholder(R.drawable.user).into(userpic);
 
                                             Map<String, Object> data = snapshot.getDocuments().get(0).getData();
@@ -151,16 +151,13 @@ public class LoginActivity extends AppCompatActivity {
                                             editor.putString("phone", data.get("phone").toString());
                                             editor.putString("studentID", data.get("studentID").toString());
                                             editor.putString("password", data.get("password").toString());
+                                            editor.putString("userID", snapshot.getDocuments().get(0).getId());
                                             editor.apply();
 
-
-                                            Log.d("GET_DATA", "DocumentSnapshot data: " + task.getResult().getDocuments());
-                                            Intent intent = new Intent(LoginActivity.this, HomescreenActivity.class);
-                                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                                            startActivity(intent);
-                                            Toasty.success(LoginActivity.this, "Welcome!", Toast.LENGTH_SHORT, true).show();
-
                                         } else {
+                                            Fname.setVisibility(View.GONE);
+                                            info.setText("Please enter your student ID \nand password to continue.");
+                                            userpic.setImageResource(R.drawable.user);
                                             Log.d("GET_DATA", "No such document");
                                             Toasty.error(getApplicationContext(), "Invalid Student ID...please try again").show();
                                         }
@@ -184,24 +181,26 @@ public class LoginActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //checking if the rememebr me if checked
+                if (!sharedPrefs.getString("studentID", "").equalsIgnoreCase(StudentID.getText().toString())) {
+                    Toasty.error(getApplicationContext(), "Student ID is invalid");
+                } else {
+                    if (sharedPrefs.getString("password", "1234").equalsIgnoreCase(Password.getText().toString())) {
+                        //checking if the rememebr me if checked
+                        if (rememberMe.isChecked() == true) {
+                            editor.putBoolean("isLoggedIn", true);
+                            editor.apply();
+                        }
+                        Log.i("OH HAPPY DAY", "pASSWORD MATCH");
+                        button.setBackgroundResource(R.drawable.clicked);
+                        Intent intent = new Intent(LoginActivity.this, HomescreenActivity.class);
+                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                        startActivity(intent);
+                        Toasty.success(LoginActivity.this, "Welcome!", Toast.LENGTH_SHORT, true).show();
+                    } else {
+                        Toasty.error(getApplicationContext(), "Password is incorrect");
+                    }
 
-                if (rememberMe.isChecked() == true) {
-                    editor.putBoolean("isLoggedIn", true);
-                    editor.putString("userID", "");
-                    editor.apply();
                 }
-
-                if (sharedPrefs.getString("password", "1234").equalsIgnoreCase(Password.getText().toString())) {
-                    Log.i("OH HAPPY DAY", "pASSWORD MATCH");
-                    button.setBackgroundResource(R.drawable.clicked);
-                    Intent intent = new Intent(LoginActivity.this, HomescreenActivity.class);
-                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                    startActivity(intent);
-                    Toasty.success(LoginActivity.this, "Welcome!", Toast.LENGTH_SHORT, true).show();
-                }
-
-
             }
         });
 

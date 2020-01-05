@@ -1,6 +1,7 @@
 package com.example.ecampus.activities;
 
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,12 +19,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.example.ecampus.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.Source;
 import com.mikhaellopez.circularimageview.CircularImageView;
+import com.squareup.picasso.Picasso;
+
+import java.util.Map;
 
 import es.dmoral.toasty.Toasty;
 
@@ -111,10 +120,61 @@ public class LoginActivity extends AppCompatActivity {
                     //check if user id is in fire store and display data
                     Toast.makeText(getApplicationContext(), "17", Toast.LENGTH_LONG).show();
 
+                    //Query Firestore and retrieve the document
+                    Source source = Source.SERVER;
+                    db.collection("students")
+                            .whereEqualTo("student_ID", StudentID.getText().toString())
+                            .get(source)
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @SuppressLint("SetTextI18n")
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        QuerySnapshot snapshot = task.getResult();
+                                        if (snapshot.getDocuments().size() == 1) {
+
+                                            Fname.setVisibility(View.VISIBLE);
+
+                                            info.setText("Please enter your password \nto continue.");
+                                            Fname.setText(snapshot.getDocuments().get(0).get("fname").toString() + ".");
+                                            Picasso.get().load(snapshot.getDocuments().get(0).getString("image")).placeholder(R.drawable.user).into(userpic);
+
+                                            Map<String, Object> data = snapshot.getDocuments().get(0).getData();
+                                            editor.putString("firstName", data.get("firstName").toString());
+                                            editor.putString("lastName", data.get("lastName").toString());
+                                            editor.putString("born", data.get("born").toString());
+                                            editor.putString("department", data.get("department").toString());
+                                            editor.putString("email", data.get("email").toString());
+                                            editor.putString("image", data.get("image").toString());
+                                            editor.putString("level", data.get("level").toString());
+                                            editor.putString("nationality", data.get("nationality").toString());
+                                            editor.putString("phone", data.get("phone").toString());
+                                            editor.putString("studentID", data.get("studentID").toString());
+                                            editor.putString("password", data.get("password").toString());
+                                            editor.apply();
+
+
+                                            Log.d("GET_DATA", "DocumentSnapshot data: " + task.getResult().getDocuments());
+                                            Intent intent = new Intent(LoginActivity.this, HomescreenActivity.class);
+                                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                                            startActivity(intent);
+                                            Toasty.success(LoginActivity.this, "Welcome!", Toast.LENGTH_SHORT, true).show();
+
+                                        } else {
+                                            Log.d("GET_DATA", "No such document");
+                                            Toasty.error(getApplicationContext(), "Invalid Student ID...please try again").show();
+                                        }
+                                    } else {
+                                        Toasty.error(getApplicationContext(), "Couldn't connect to the internet").show();
+                                        Log.d("GET_DATA", "get failed with ", task.getException());
+                                    }
+                                }
+                            });
+
 
                 } else {
 
-                    //user id not in firestore
+                    //user id not up to 17
                     // Toast.makeText(getApplicationContext(), "Student ID not registered!!\nSee admin to get registered!", Toast.LENGTH_LONG).show();
 
                 }
@@ -125,17 +185,21 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //checking if the rememebr me if checked
+
                 if (rememberMe.isChecked() == true) {
                     editor.putBoolean("isLoggedIn", true);
                     editor.putString("userID", "");
                     editor.apply();
                 }
 
-                button.setBackgroundResource(R.drawable.clicked);
-                Intent intent = new Intent(LoginActivity.this, HomescreenActivity.class);
-                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                startActivity(intent);
-                Toasty.success(LoginActivity.this, "Welcome!", Toast.LENGTH_SHORT, true).show();
+                if (sharedPrefs.getString("password", "1234").equalsIgnoreCase(Password.getText().toString())) {
+                    Log.i("OH HAPPY DAY", "pASSWORD MATCH");
+                    button.setBackgroundResource(R.drawable.clicked);
+                    Intent intent = new Intent(LoginActivity.this, HomescreenActivity.class);
+                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                    startActivity(intent);
+                    Toasty.success(LoginActivity.this, "Welcome!", Toast.LENGTH_SHORT, true).show();
+                }
 
 
             }

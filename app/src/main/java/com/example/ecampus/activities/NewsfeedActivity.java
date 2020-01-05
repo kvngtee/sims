@@ -151,8 +151,6 @@ public class NewsfeedActivity extends AppCompatActivity {
                 mList = lastweeksList;
             case 3:
                 mList = olderList;
-            default:
-                mList = latestList;
         }
         setAdapter();
     }

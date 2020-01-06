@@ -42,9 +42,14 @@ public class SplashActivity extends Activity {
                 // This method will be executed once the timer is over
                 if (sharedPrefs.getBoolean("isLoggedIn", false)){
                     startActivity(new Intent(SplashActivity.this, HomescreenActivity.class));
-
-                }else{
+                } else if (sharedPrefs.getBoolean("isFirstLaunch", true)){
                     startActivity(new Intent(SplashActivity.this, WelcomeActivity.class));
+                } else{
+                    if (sharedPrefs.getBoolean("isLoggedIn", false)){
+                        startActivity(new Intent(SplashActivity.this, HomescreenActivity.class));
+                    }else{
+                        startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                    }
                 }//overridePendingTransition(R.anim.zoom_in, R.anim.zoom_out);
                 finish();
             }

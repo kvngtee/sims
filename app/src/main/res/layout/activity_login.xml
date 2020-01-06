@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/gotham"
-                android:text="Welcome back,"
+                android:text="Welcome "
                 android:textColor="#FFFFFF"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -162,7 +162,6 @@
                 android:layout_weight="1"
                 android:buttonTint="#8A8A8A"
                 android:checked="false"
-                android:onClick="onCheckboxClicked"
                 android:shadowColor="#FF6F00"
                 android:text="Remember me"
                 android:textColor="#8A8A8A" />
@@ -176,7 +175,7 @@
                 android:focusable="true"
                 android:fontFamily="@font/proximabold"
                 android:gravity="end"
-                android:text="Change Password"
+                android:text="Forgot Password"
                 android:textColor="#8A8A8A"
                 android:textSize="15sp"
                 android:textStyle="bold" />

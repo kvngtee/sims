@@ -39,7 +39,7 @@
         <activity android:name=".activities.PostDetailActivity" />
         <activity android:name=".activities.HomescreenActivity" />
         <activity android:name=".activities.WelcomeActivity" />
-        <activity android:name=".activities.ChangepasswordActivity" />
+        <activity android:name=".activities.ForgotpasswordActivity" />
         <activity android:name=".activities.LoginActivity" />
 
         <meta-data

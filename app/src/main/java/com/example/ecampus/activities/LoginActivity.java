@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,7 +41,7 @@ import es.dmoral.toasty.Toasty;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText StudentID, Password;
-    private TextView Fname, info, forgotpass;
+    private TextView Fname, info, welcome, forgotpass;
     private Button button;
     private CheckBox rememberMe;
     private CardView cardview;
@@ -70,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
         Password = findViewById(R.id.password);
         button = findViewById(R.id.loginbtn);
         Fname = findViewById(R.id.Fname);
+        welcome = findViewById(R.id.welcome);
         info = findViewById(R.id.info);
         userpic = findViewById(R.id.userpic);
         cardview = findViewById(R.id.cardview);
@@ -78,29 +80,6 @@ public class LoginActivity extends AppCompatActivity {
 
         Fname.setVisibility(View.GONE);
         StudentID.getText().toString().trim();
-
-        StudentID.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    //has focus
-                    if (StudentID.length() == 17) {
-                        //check if user id is in fire store and display data
-                        Toast.makeText(getApplicationContext(), "17", Toast.LENGTH_LONG).show();
-
-                    } else {
-
-                        //user id not in firestore
-                        // Toast.makeText(getApplicationContext(), "Student ID not registered!!\nSee admin to get registered!", Toast.LENGTH_LONG).show();
-
-                    }
-
-                } else {
-                    //has no focus
-
-                }
-            }
-        });
 
         StudentID.addTextChangedListener(new TextWatcher() {
             @Override
@@ -118,8 +97,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (StudentID.length() == 17) {
                     //check if user id is in fire store and display data
-                    Toast.makeText(getApplicationContext(), "17", Toast.LENGTH_LONG).show();
-
                     //Query Firestore and retrieve the document
                     Source source = Source.SERVER;
                     db.collection("students")
@@ -135,6 +112,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                             Fname.setVisibility(View.VISIBLE);
 
+                                            welcome.setText("Welcome back,");
                                             info.setText("Please enter your password \nto continue.");
                                             Fname.setText(snapshot.getDocuments().get(0).get("firstName").toString() + ".");
                                             Picasso.get().load(snapshot.getDocuments().get(0).getString("image")).placeholder(R.drawable.user).into(userpic);
@@ -181,15 +159,10 @@ public class LoginActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!sharedPrefs.getString("studentID", "").equalsIgnoreCase(StudentID.getText().toString())) {
-                    Toasty.error(getApplicationContext(), "Student ID is invalid");
+                if (StudentID.getText().toString().length() < 17) {
+                    Toasty.error(getApplicationContext(), "Student ID is invalid/incomplete").show();
                 } else {
                     if (sharedPrefs.getString("password", "1234").equalsIgnoreCase(Password.getText().toString())) {
-                        //checking if the rememebr me if checked
-                        if (rememberMe.isChecked() == true) {
-                            editor.putBoolean("isLoggedIn", true);
-                            editor.apply();
-                        }
                         Log.i("OH HAPPY DAY", "pASSWORD MATCH");
                         button.setBackgroundResource(R.drawable.clicked);
                         Intent intent = new Intent(LoginActivity.this, HomescreenActivity.class);
@@ -197,9 +170,26 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(intent);
                         Toasty.success(LoginActivity.this, "Welcome!", Toast.LENGTH_SHORT, true).show();
                     } else {
-                        Toasty.error(getApplicationContext(), "Password is incorrect");
+                        Toasty.error(getApplicationContext(), "Password is incorrect").show();
                     }
 
+                }
+            }
+        });
+
+        //checking if the rememberMe if checked
+        rememberMe.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    editor.putBoolean("isLoggedIn", true);
+                    editor.apply();
+                    Log.i("LOGIN", "Keep me logged In IS: TRUE ");
+
+                } else {
+                    editor.putBoolean("isLoggedIn", false);
+                    editor.apply();
+                    Log.i("LOGIN", "Keep me logged In IS: false ");
                 }
             }
         });
@@ -209,7 +199,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(LoginActivity.this, ChangepasswordActivity.class);
+                Intent intent = new Intent(LoginActivity.this, ForgotpasswordActivity.class);
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                 startActivity(intent);
 

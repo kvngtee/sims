@@ -114,14 +114,11 @@
 
     </com.google.android.material.tabs.TabLayout>
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/myrecyclerview"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/myViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/tablayout"
-        android:layoutAnimation="@anim/layout_animation">
-
-    </androidx.recyclerview.widget.RecyclerView>
+/>
 
 </RelativeLayout>

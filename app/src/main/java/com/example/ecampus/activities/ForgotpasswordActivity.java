@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -15,10 +14,9 @@ import androidx.cardview.widget.CardView;
 
 import com.example.ecampus.R;
 
-public class ChangepasswordActivity extends AppCompatActivity {
+public class ForgotpasswordActivity extends AppCompatActivity {
 
-    private EditText newpass, confirmpass;
-    private Button btnReset;
+    private Button send_mail;
     private TextView tvback;
     private CardView cardview;
     private ProgressBar progressBar;
@@ -26,7 +24,7 @@ public class ChangepasswordActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_changepassword);
+        setContentView(R.layout.activity_forgotpassword);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
 
@@ -40,16 +38,14 @@ public class ChangepasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cardview.setCardBackgroundColor(Color.parseColor("#6C63Ff"));
-                Intent intent = new Intent(ChangepasswordActivity.this, LoginActivity.class);
+                Intent intent = new Intent(ForgotpasswordActivity.this, LoginActivity.class);
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                 startActivity(intent);
             }
         });
 
 
-        newpass = findViewById(R.id.new_password);
-        confirmpass = findViewById(R.id.confirm_password);
-        btnReset = findViewById(R.id.resetpassword);
+        send_mail = findViewById(R.id.resetpassword);
         tvback = findViewById(R.id.goback);
         progressBar = findViewById(R.id.progressBar3);
         progressBar.setVisibility(View.GONE);
@@ -58,7 +54,7 @@ public class ChangepasswordActivity extends AppCompatActivity {
         tvback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ChangepasswordActivity.this, LoginActivity.class));
+                startActivity(new Intent(ForgotpasswordActivity.this, LoginActivity.class));
                 finish();
             }
         });

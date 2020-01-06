@@ -2,12 +2,15 @@ package com.example.ecampus.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.GridLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +19,10 @@ import androidx.cardview.widget.CardView;
 
 import com.example.ecampus.R;
 import com.mikhaellopez.circularimageview.CircularImageView;
+import com.squareup.picasso.Picasso;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class HomescreenActivity extends AppCompatActivity {
@@ -24,7 +31,7 @@ public class HomescreenActivity extends AppCompatActivity {
     GridLayout mainGrid;
     Toolbar toolbar;
     CircularImageView profile;
-
+private TextView    userName, todayDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +42,20 @@ public class HomescreenActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
+        SharedPreferences sharedPrefs = getSharedPreferences("APP_PREFS", MODE_PRIVATE);
 
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE, MMMM dd, yyyy");
         mainGrid = findViewById(R.id.mainGrid);
 
         profile = findViewById(R.id.userpic);
 
+        userName = findViewById(R.id.username);
+        todayDate = findViewById(R.id.date);
+
+        userName.setText(sharedPrefs.getString("firstName", "No name"));
+        todayDate.setText(sdf.format(new Date()));
+
+        Picasso.get().load(sharedPrefs.getString("image", "")).placeholder(R.drawable.user).into(profile);
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,44 +88,43 @@ public class HomescreenActivity extends AppCompatActivity {
                             intent.putExtra("info", "This is activity from card item index  " + finalI);
                             startActivity(intent);
 
-                        }
-                        else if (finalI == 1){
+                        } else if (finalI == 1) {
                             Intent intent = new Intent(HomescreenActivity.this, ForumActivity.class);
                             intent.putExtra("info", "This is activity from card item index  " + finalI);
                             startActivity(intent);
-                        }
-                        else if (finalI == 2){
+                        } else if (finalI == 2) {
                             Intent intent = new Intent(HomescreenActivity.this, NoticeActivity.class);
                             intent.putExtra("info", "This is activity from card item index  " + finalI);
                             startActivity(intent);
-                        }
-                        else if (finalI == 3){
+                        } else if (finalI == 3) {
                             Intent intent = new Intent(HomescreenActivity.this, TimetableActivity.class);
                             intent.putExtra("info", "This is activity from card item index  " + finalI);
                             startActivity(intent);
-                        }
-                        else if (finalI == 4){
+                        } else if (finalI == 4) {
                             Intent intent = new Intent(HomescreenActivity.this, StaffrecordActivity.class);
                             intent.putExtra("info", "This is activity from card item index  " + finalI);
                             startActivity(intent);
-                        }
-                        else if (finalI == 5){
+                        } else if (finalI == 5) {
                             Intent intent = new Intent(HomescreenActivity.this, CalculatorActivity.class);
                             intent.putExtra("info", "This is activity from card item index  " + finalI);
                             startActivity(intent);
-                        }
-                        else if (finalI == 6){
+                        } else if (finalI == 6) {
                             Intent intent = new Intent(HomescreenActivity.this, WebsiteActivity.class);
                             intent.putExtra("info", "This is activity from card item index  " + finalI);
                             startActivity(intent);
-                        }
-                        else if (finalI == 7){
+                        } else if (finalI == 7) {
                             Intent intent = new Intent(HomescreenActivity.this, ProfileActivity.class);
                             intent.putExtra("info", "This is activity from card item index  " + finalI);
                             startActivity(intent);
-                        }
-                        else if (finalI == 8){
+                        } else if (finalI == 8) {
+                            SharedPreferences sharedPref = getSharedPreferences("APP_PREFS", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPref.edit();
+                            editor.putBoolean("isLoggedIn", false);
+                            editor.apply();
+                            Log.i("LOGIN", "Keep me logged In IS: false ");
                             Toast.makeText(getApplicationContext(), "Logout", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(HomescreenActivity.this, LoginActivity.class)
+                                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                         }
 
 

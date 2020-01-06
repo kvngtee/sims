@@ -73,7 +73,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 changepassword.setBackgroundColor(Color.parseColor("#252525"));
-                Intent intent = new Intent(SettingsActivity.this, ChangepasswordActivity.class);
+                Intent intent = new Intent(SettingsActivity.this, ForgotpasswordActivity.class);
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                 startActivity(intent);
 

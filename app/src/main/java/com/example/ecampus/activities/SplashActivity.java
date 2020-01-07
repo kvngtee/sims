@@ -13,7 +13,7 @@ import com.example.ecampus.R;
 
 public class SplashActivity extends Activity {
 
-    private static int SPLASH_TIME_OUT = 3000;
+    private static int SPLASH_TIME_OUT = 2800;
 
     //to get user session data
 
@@ -24,7 +24,7 @@ public class SplashActivity extends Activity {
 
 
         YoYo.with(Techniques.Bounce)
-                .duration(5000)
+                .duration(4000)
                 .playOn(findViewById(R.id.logo));
 
 
@@ -50,7 +50,7 @@ public class SplashActivity extends Activity {
                     }else{
                         startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                     }
-                }//overridePendingTransition(R.anim.zoom_in, R.anim.zoom_out);
+                }
                 finish();
             }
         }, SPLASH_TIME_OUT);

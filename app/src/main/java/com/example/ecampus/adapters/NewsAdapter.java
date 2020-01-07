@@ -15,7 +15,6 @@ import com.example.ecampus.models.Blog;
 import com.github.curioustechizen.ago.RelativeTimeTextView;
 import com.squareup.picasso.Picasso;
 
-import java.util.Date;
 import java.util.List;
 
 
@@ -29,7 +28,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.blog_row, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.news_row, parent, false);
         return new MyViewHolder(view);
     }
 

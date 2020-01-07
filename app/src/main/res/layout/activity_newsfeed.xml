@@ -58,7 +58,7 @@
             <SearchView
                 android:id="@+id/simpleSearchView"
                 android:layout_width="match_parent"
-                android:layout_height="36dp"
+                android:layout_height="37dp"
                 android:iconifiedByDefault="false"
                 android:queryBackground="@android:color/transparent"
                 android:queryHint="Search for news" />
@@ -75,6 +75,8 @@
         app:tabSelectedTextColor="@android:color/white"
         android:textAlignment="center"
         android:elevation="8dp"
+        android:layout_marginStart="-10dp"
+        android:layout_marginEnd="-10dp"
         app:tabIndicatorColor="@color/colorPrimary"
         app:tabIndicatorGravity="bottom"
         app:tabIndicatorHeight="2dp"
@@ -88,12 +90,7 @@
             android:textAlignment="center"
             android:text="Latest"/>
 
-        <!-- <com.google.android.material.tabs.TabItem
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:textAlignment="center"
-             android:text="Today"/>
- -->
+
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

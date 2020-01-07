@@ -10,6 +10,7 @@
     android:fitsSystemWindows="true"
     tools:context=".activities.PostDetailActivity">
 
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
@@ -73,7 +74,7 @@
             android:fontFamily="@font/gotham"
             android:text="News Title"
             android:textColor="#FFFFFF"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
 
 
         <LinearLayout
@@ -130,22 +131,21 @@
 
                 <ImageView
                     android:id="@+id/love"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_gravity="center"
-                    android:layout_marginEnd="4dp"
-                    android:src="@drawable/love" />
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/lovebefore" />
 
                 <TextView
                     android:id="@+id/like"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginEnd="20dp"
                     android:clickable="false"
-                    android:text="1.5K"
+                    android:text="1.5K Likes"
                     android:textColor="#8A8A8A"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
 
             </LinearLayout>
 

@@ -10,15 +10,9 @@ import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
-
 import com.example.ecampus.R;
 import com.example.ecampus.adapters.ViewPagerAdapter;
-import com.example.ecampus.fragments.LastWeekFragment;
-import com.example.ecampus.fragments.LatestFragment;
-import com.example.ecampus.fragments.OldestFragment;
-import com.example.ecampus.fragments.YesterdayFragment;
 import com.example.ecampus.models.Blog;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.firestore.DocumentChange;
@@ -50,11 +44,6 @@ public class NewsfeedActivity extends AppCompatActivity {
     List<Blog> olderList = new ArrayList<>();
     List<Blog> mList = new ArrayList<>();
 
-    /*   LatestFragment latestFragment;
-       YesterdayFragment yesterdayFragment;
-       LastWeekFragment lastWeekFragment;
-       OldestFragment oldestFragment;
-   */
     String thisYear, thisMonth;
 
     @Override
@@ -84,12 +73,7 @@ public class NewsfeedActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-       /*  latestFragment = (LatestFragment)getSupportFragmentManager().findFragmentById(R.id.newsFragment);
-        yesterdayFragment = (YesterdayFragment) getSupportFragmentManager().findFragmentById(R.id.newsFragment);
-        lastWeekFragment = (LastWeekFragment) getSupportFragmentManager().findFragmentById(R.id.newsFragment);
-        oldestFragment = (OldestFragment) getSupportFragmentManager().findFragmentById(R.id.newsFragment);
-*/
-        thisYear = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+              thisYear = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
         thisMonth = DateFormat.format("MM", new Date()).toString();
 
         db = FirebaseFirestore.getInstance();
@@ -125,27 +109,18 @@ public class NewsfeedActivity extends AppCompatActivity {
                     if (daysDiff <= 0) {
                         Log.i("TODAY", "It's today");
                         latestList.add(newBlog);
-                        //latestFragment.refreshRecyclerView();
-                    } else if (daysDiff == 1) {
+                     } else if (daysDiff == 1) {
                         Log.i("YESTERDAY", "It's was yesterday");
                         yesterdaysList.add(newBlog);
-                        //    yesterdayFragment.refreshRecyclerView();
-                    } else if (daysDiff > 1 && daysDiff <= 7) {
+                     } else if (daysDiff > 1 && daysDiff <= 7) {
                         Log.i("Last Week", "This was Last Week");
                         lastweeksList.add(newBlog);
-                        // lastWeekFragment.refreshRecyclerView();
-                    } else if (daysDiff > 7) {
+                     } else if (daysDiff > 7) {
                         Log.i("OLDER", "This is too Old");
                         olderList.add(newBlog);
-                        //  oldestFragment.refreshRecyclerView();
                     }
                     getNewsList();
-                    Log.i("LATEST COUNT", String.valueOf(latestList.size()));
-
-                    Log.i("YESTERDAY COUNT", String.valueOf(latestList.size()));
-                    Log.i("LAST WEEK COUNT", String.valueOf(latestList.size()));
-                    Log.i("OLDEST COUNT", String.valueOf(latestList.size()));
-                }
+                    }
             }
         });
 

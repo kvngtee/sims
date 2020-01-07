@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.example.ecampus.activities.NewsfeedActivity;
 import com.example.ecampus.fragments.LastWeekFragment;
 import com.example.ecampus.fragments.LatestFragment;
 import com.example.ecampus.fragments.OldestFragment;
@@ -23,7 +24,10 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
+            {
                 return new LatestFragment();
+
+            }
             case 1:
                 return new YesterdayFragment();
             case 2:

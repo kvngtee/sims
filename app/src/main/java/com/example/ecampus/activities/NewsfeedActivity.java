@@ -10,16 +10,22 @@ import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.ecampus.R;
 import com.example.ecampus.adapters.ViewPagerAdapter;
+import com.example.ecampus.fragments.LastWeekFragment;
+import com.example.ecampus.fragments.LatestFragment;
+import com.example.ecampus.fragments.OldestFragment;
+import com.example.ecampus.fragments.YesterdayFragment;
 import com.example.ecampus.models.Blog;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
@@ -44,7 +50,13 @@ public class NewsfeedActivity extends AppCompatActivity {
     List<Blog> olderList = new ArrayList<>();
     List<Blog> mList = new ArrayList<>();
 
+    /*   LatestFragment latestFragment;
+       YesterdayFragment yesterdayFragment;
+       LastWeekFragment lastWeekFragment;
+       OldestFragment oldestFragment;
+   */
     String thisYear, thisMonth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,13 +84,17 @@ public class NewsfeedActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+       /*  latestFragment = (LatestFragment)getSupportFragmentManager().findFragmentById(R.id.newsFragment);
+        yesterdayFragment = (YesterdayFragment) getSupportFragmentManager().findFragmentById(R.id.newsFragment);
+        lastWeekFragment = (LastWeekFragment) getSupportFragmentManager().findFragmentById(R.id.newsFragment);
+        oldestFragment = (OldestFragment) getSupportFragmentManager().findFragmentById(R.id.newsFragment);
+*/
         thisYear = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
         thisMonth = DateFormat.format("MM", new Date()).toString();
 
         db = FirebaseFirestore.getInstance();
         db.collection("news")
-                .document(thisYear).collection(thisMonth).addSnapshotListener(new EventListener<QuerySnapshot>() {
+                .document(thisYear).collection(thisMonth).orderBy("date", Query.Direction.DESCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException e) {
                 if (e != null) {
@@ -109,21 +125,31 @@ public class NewsfeedActivity extends AppCompatActivity {
                     if (daysDiff <= 0) {
                         Log.i("TODAY", "It's today");
                         latestList.add(newBlog);
+                        //latestFragment.refreshRecyclerView();
                     } else if (daysDiff == 1) {
                         Log.i("YESTERDAY", "It's was yesterday");
                         yesterdaysList.add(newBlog);
+                        //    yesterdayFragment.refreshRecyclerView();
                     } else if (daysDiff > 1 && daysDiff <= 7) {
                         Log.i("Last Week", "This was Last Week");
                         lastweeksList.add(newBlog);
-                    } else {
+                        // lastWeekFragment.refreshRecyclerView();
+                    } else if (daysDiff > 7) {
                         Log.i("OLDER", "This is too Old");
                         olderList.add(newBlog);
+                        //  oldestFragment.refreshRecyclerView();
                     }
+                    getNewsList();
+                    Log.i("LATEST COUNT", String.valueOf(latestList.size()));
+
+                    Log.i("YESTERDAY COUNT", String.valueOf(latestList.size()));
+                    Log.i("LAST WEEK COUNT", String.valueOf(latestList.size()));
+                    Log.i("OLDEST COUNT", String.valueOf(latestList.size()));
                 }
             }
         });
 
-/*
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -138,9 +164,8 @@ public class NewsfeedActivity extends AppCompatActivity {
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
                 getNewsList();
-
             }
-        });*/
+        });
 
     }
 
@@ -148,6 +173,7 @@ public class NewsfeedActivity extends AppCompatActivity {
     public List<Blog> getNewsList() {
         switch (tabLayout.getSelectedTabPosition()) {
             case 0:
+            default:
                 return latestList;
             case 1:
                 return yesterdaysList;
@@ -155,8 +181,7 @@ public class NewsfeedActivity extends AppCompatActivity {
                 return lastweeksList;
             case 3:
                 return olderList;
-        }
-        return null;
+          }
     }
 
 

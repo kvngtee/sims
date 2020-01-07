@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class LatestFragment extends Fragment {
 
-    private List<Blog> mList = new ArrayList<>();
+    private List<Blog> mList;
     private View view;
     private RecyclerView recyclerView;
     private  SwipeRefreshLayout swipeRefreshLayout;
@@ -34,6 +34,9 @@ public class LatestFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public LatestFragment(List<Blog> mList) {
+        this.mList = mList;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,15 +44,12 @@ public class LatestFragment extends Fragment {
         // Inflate the layout for this fragment
          view = inflater.inflate(R.layout.fragment_newsfeed, container, false);
         mList=   ((NewsfeedActivity)getActivity()).getNewsList();
-
         swipeRefreshLayout = view.findViewById(R.id.swipeRefresh);
          recyclerView = view.findViewById(R.id.myrecyclerview);
         refreshRecyclerView();
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-             mList=   ((NewsfeedActivity)getActivity()).getNewsList();
-
                  refreshRecyclerView();
                  swipeRefreshLayout.setRefreshing(false);
             }
@@ -58,11 +58,16 @@ public class LatestFragment extends Fragment {
         return view;
     }
 
-    private void refreshRecyclerView() {
+    public void refreshRecyclerView() {
+        mList=   ((NewsfeedActivity)getActivity()).getNewsList();
         NewsAdapter newsAdapter = new NewsAdapter( mList);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyclerView.setAdapter(newsAdapter);
     }
 
-
+    @Override
+    public void onStart() {
+        super.onStart();
+refreshRecyclerView();
+    }
 }

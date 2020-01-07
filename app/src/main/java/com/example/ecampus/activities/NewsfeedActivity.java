@@ -11,7 +11,6 @@ import android.view.WindowManager;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
-
 import com.example.ecampus.R;
 import com.example.ecampus.adapters.ViewPagerAdapter;
 import com.example.ecampus.models.Blog;
@@ -20,6 +19,7 @@ import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
@@ -45,6 +45,7 @@ public class NewsfeedActivity extends AppCompatActivity {
     List<Blog> mList = new ArrayList<>();
 
     String thisYear, thisMonth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,13 +73,12 @@ public class NewsfeedActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        thisYear = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+              thisYear = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
         thisMonth = DateFormat.format("MM", new Date()).toString();
 
         db = FirebaseFirestore.getInstance();
         db.collection("news")
-                .document(thisYear).collection(thisMonth).addSnapshotListener(new EventListener<QuerySnapshot>() {
+                .document(thisYear).collection(thisMonth).orderBy("date", Query.Direction.DESCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException e) {
                 if (e != null) {
@@ -109,21 +109,22 @@ public class NewsfeedActivity extends AppCompatActivity {
                     if (daysDiff <= 0) {
                         Log.i("TODAY", "It's today");
                         latestList.add(newBlog);
-                    } else if (daysDiff == 1) {
+                     } else if (daysDiff == 1) {
                         Log.i("YESTERDAY", "It's was yesterday");
                         yesterdaysList.add(newBlog);
-                    } else if (daysDiff > 1 && daysDiff <= 7) {
+                     } else if (daysDiff > 1 && daysDiff <= 7) {
                         Log.i("Last Week", "This was Last Week");
                         lastweeksList.add(newBlog);
-                    } else {
+                     } else if (daysDiff > 7) {
                         Log.i("OLDER", "This is too Old");
                         olderList.add(newBlog);
                     }
-                }
+                    getNewsList();
+                    }
             }
         });
 
-/*
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -138,9 +139,8 @@ public class NewsfeedActivity extends AppCompatActivity {
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
                 getNewsList();
-
             }
-        });*/
+        });
 
     }
 
@@ -148,6 +148,7 @@ public class NewsfeedActivity extends AppCompatActivity {
     public List<Blog> getNewsList() {
         switch (tabLayout.getSelectedTabPosition()) {
             case 0:
+            default:
                 return latestList;
             case 1:
                 return yesterdaysList;
@@ -155,8 +156,7 @@ public class NewsfeedActivity extends AppCompatActivity {
                 return lastweeksList;
             case 3:
                 return olderList;
-        }
-        return null;
+          }
     }
 
 

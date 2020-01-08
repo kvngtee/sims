@@ -90,7 +90,7 @@
                 android:layout_height="28dp"
                 android:layout_gravity="center"
                 android:elevation="15dp"
-                android:src="@drawable/useradmin" />
+                android:src="@drawable/user" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -135,7 +135,7 @@
                     android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:layout_marginEnd="8dp"
-                    android:src="@drawable/lovebefore" />
+                    android:src="@drawable/share" />
 
                 <TextView
                     android:id="@+id/like"

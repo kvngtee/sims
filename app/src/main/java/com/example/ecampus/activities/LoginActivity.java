@@ -90,11 +90,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
                 if (StudentID.length() == 17) {
                     //check if user id is in fire store and display data
                     //Query Firestore and retrieve the document
@@ -147,12 +142,21 @@ public class LoginActivity extends AppCompatActivity {
                             });
 
 
-                } else {
+                } else if (StudentID.length() < 17) {
 
-                    //user id not up to 17
-                    // Toast.makeText(getApplicationContext(), "Student ID not registered!!\nSee admin to get registered!", Toast.LENGTH_LONG).show();
+                    Fname.setVisibility(View.GONE);
+                    info.setText("Please enter your student ID \nand password to continue.");
+                    userpic.setImageResource(R.drawable.user);
+                    welcome.setText("Welcome");
 
                 }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+
             }
         });
 

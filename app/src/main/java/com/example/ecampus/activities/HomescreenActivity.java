@@ -44,7 +44,7 @@ private TextView    userName, todayDate;
 
         SharedPreferences sharedPrefs = getSharedPreferences("APP_PREFS", MODE_PRIVATE);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("EEE, MMMM dd, yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE, dd MMMM, yyyy");
         mainGrid = findViewById(R.id.mainGrid);
 
         profile = findViewById(R.id.userpic);

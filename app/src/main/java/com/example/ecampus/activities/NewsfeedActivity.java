@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
+
 import com.example.ecampus.R;
 import com.example.ecampus.adapters.ViewPagerAdapter;
 import com.example.ecampus.models.Blog;
@@ -59,7 +60,6 @@ public class NewsfeedActivity extends AppCompatActivity {
 
         profile = findViewById(R.id.userpic);
         tabLayout = findViewById(R.id.tablayout);
-
         viewPager = findViewById(R.id.myViewPager);
         viewPager.setAdapter(new ViewPagerAdapter(getApplicationContext(), getSupportFragmentManager()));
         tabLayout.setupWithViewPager(viewPager);
@@ -73,7 +73,7 @@ public class NewsfeedActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-              thisYear = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+        thisYear = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
         thisMonth = DateFormat.format("MM", new Date()).toString();
 
         db = FirebaseFirestore.getInstance();
@@ -109,18 +109,18 @@ public class NewsfeedActivity extends AppCompatActivity {
                     if (daysDiff <= 0) {
                         Log.i("TODAY", "It's today");
                         latestList.add(newBlog);
-                     } else if (daysDiff == 1) {
+                    } else if (daysDiff == 1) {
                         Log.i("YESTERDAY", "It's was yesterday");
                         yesterdaysList.add(newBlog);
-                     } else if (daysDiff > 1 && daysDiff <= 7) {
+                    } else if (daysDiff > 1 && daysDiff <= 7) {
                         Log.i("Last Week", "This was Last Week");
                         lastweeksList.add(newBlog);
-                     } else if (daysDiff > 7) {
+                    } else if (daysDiff > 7) {
                         Log.i("OLDER", "This is too Old");
                         olderList.add(newBlog);
                     }
                     getNewsList();
-                    }
+                }
             }
         });
 
@@ -156,7 +156,7 @@ public class NewsfeedActivity extends AppCompatActivity {
                 return lastweeksList;
             case 3:
                 return olderList;
-          }
+        }
     }
 
 

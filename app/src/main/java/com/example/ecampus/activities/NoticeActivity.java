@@ -37,5 +37,6 @@ public class NoticeActivity extends AppCompatActivity {
             }
         });
 
+
     }
 }

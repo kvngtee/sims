@@ -68,6 +68,7 @@ public class ProfileActivity extends AppCompatActivity {
         Nationality.setText(sharedPrefs.getString("nationality",""));
         Email.setText(sharedPrefs.getString("email", ""));
         PhoneNo.setText(sharedPrefs.getString("phone", ""));
+        Department.setText(sharedPrefs.getString("department", ""));
 
     }
 }

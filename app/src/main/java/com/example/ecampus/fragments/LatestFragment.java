@@ -34,9 +34,6 @@ public class LatestFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public LatestFragment(List<Blog> mList) {
-        this.mList = mList;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

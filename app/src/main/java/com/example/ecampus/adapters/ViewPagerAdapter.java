@@ -24,11 +24,8 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-            {
                 return new LatestFragment();
-
-            }
-            case 1:
+                case 1:
                 return new YesterdayFragment();
             case 2:
                 return new LastWeekFragment();

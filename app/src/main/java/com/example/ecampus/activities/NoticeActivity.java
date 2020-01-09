@@ -49,8 +49,6 @@ public class NoticeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
 
 

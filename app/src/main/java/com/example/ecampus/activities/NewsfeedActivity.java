@@ -14,7 +14,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.ecampus.R;
 import com.example.ecampus.adapters.ViewPagerAdapter;
-import com.example.ecampus.models.Blog;
+import com.example.ecampus.models.News;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
@@ -39,11 +39,11 @@ public class NewsfeedActivity extends AppCompatActivity {
     TabLayout tabLayout;
 
     ViewPager viewPager;
-    List<Blog> latestList = new ArrayList<>();
-    List<Blog> yesterdaysList = new ArrayList<>();
-    List<Blog> lastweeksList = new ArrayList<>();
-    List<Blog> olderList = new ArrayList<>();
-    List<Blog> mList = new ArrayList<>();
+    List<News> latestList = new ArrayList<>();
+    List<News> yesterdaysList = new ArrayList<>();
+    List<News> lastweeksList = new ArrayList<>();
+    List<News> olderList = new ArrayList<>();
+    List<News> mList = new ArrayList<>();
 
     String thisYear, thisMonth;
 
@@ -96,7 +96,7 @@ public class NewsfeedActivity extends AppCompatActivity {
 
                 // Loop through the snapshot
                 for (DocumentChange doc : snapshots.getDocumentChanges()) {
-                    Blog newBlog = new Blog(doc.getDocument().getId(), doc.getDocument().getString("image"),
+                    News newNews = new News(doc.getDocument().getId(), doc.getDocument().getString("image"),
                             doc.getDocument().getString("title"),
                             doc.getDocument().getString("desc"),
                             doc.getDocument().getDate("date"));
@@ -108,16 +108,16 @@ public class NewsfeedActivity extends AppCompatActivity {
                     int daysDiff = (int) (diff / (1000 * 60 * 60 * 24));
                     if (daysDiff <= 0) {
                         Log.i("TODAY", "It's today");
-                        latestList.add(newBlog);
+                        latestList.add(newNews);
                     } else if (daysDiff == 1) {
                         Log.i("YESTERDAY", "It's was yesterday");
-                        yesterdaysList.add(newBlog);
+                        yesterdaysList.add(newNews);
                     } else if (daysDiff > 1 && daysDiff <= 7) {
                         Log.i("Last Week", "This was Last Week");
-                        lastweeksList.add(newBlog);
+                        lastweeksList.add(newNews);
                     } else if (daysDiff > 7) {
                         Log.i("OLDER", "This is too Old");
-                        olderList.add(newBlog);
+                        olderList.add(newNews);
                     }
                     getNewsList();
                 }
@@ -145,7 +145,7 @@ public class NewsfeedActivity extends AppCompatActivity {
     }
 
 
-    public List<Blog> getNewsList() {
+    public List<News> getNewsList() {
         switch (tabLayout.getSelectedTabPosition()) {
             case 0:
             default:

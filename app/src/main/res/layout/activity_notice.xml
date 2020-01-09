@@ -56,15 +56,25 @@
         android:id="@+id/info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:layout_below="@id/noticetb"
         android:lineSpacingExtra="3dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:fontFamily="@font/proximalight"
-        android:text="This section contains the official notices from the \nschool administration."
+        android:text="This section contains official notices from the school administration."
         android:textColor="#ACACAC"
-        android:textSize="15sp" />
+        android:textSize="12sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/myrecyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/info"
+        android:layout_marginTop="8dp"
+        >
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 
 </RelativeLayout>

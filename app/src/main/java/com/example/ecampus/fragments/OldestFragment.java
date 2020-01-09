@@ -14,7 +14,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.example.ecampus.R;
 import com.example.ecampus.activities.NewsfeedActivity;
 import com.example.ecampus.adapters.NewsAdapter;
-import com.example.ecampus.models.Blog;
+import com.example.ecampus.models.News;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ import java.util.List;
  */
 public class OldestFragment extends Fragment {
 
-    private List<Blog> mList = new ArrayList<>();
+    private List<News> mList = new ArrayList<>();
     private View view;
     private RecyclerView recyclerView;
     private  SwipeRefreshLayout swipeRefreshLayout;

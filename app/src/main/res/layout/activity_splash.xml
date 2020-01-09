@@ -42,7 +42,7 @@
         android:text="Kvngtee Codes Inc."
         android:textAlignment="center"
         android:textColor="#ACACAC"
-        android:textSize="12sp" />
+        android:textSize="11sp" />
 
 
 </RelativeLayout>

@@ -15,9 +15,8 @@ import android.view.ViewGroup;
 import com.example.ecampus.R;
 import com.example.ecampus.activities.NewsfeedActivity;
 import com.example.ecampus.adapters.NewsAdapter;
-import com.example.ecampus.models.Blog;
+import com.example.ecampus.models.News;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,7 +24,7 @@ import java.util.List;
  */
 public class LatestFragment extends Fragment {
 
-    private List<Blog> mList;
+    private List<News> mList;
     private View view;
     private RecyclerView recyclerView;
     private  SwipeRefreshLayout swipeRefreshLayout;
@@ -65,6 +64,6 @@ public class LatestFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-refreshRecyclerView();
+      refreshRecyclerView();
     }
 }

@@ -49,7 +49,7 @@ public class LatestFragment extends Fragment {
                     .document(thisYear).collection(thisMonth);
     private Query query = News.orderBy("date", Query.Direction.DESCENDING);
 
-    private FirestoreRecyclerAdapter firebaseRecyclerAdapter;
+    private FirestoreRecyclerAdapter firestoreRecyclerAdapter;
 
     @BindView(R.id.myrecyclerview)
     RecyclerView recyclerView;
@@ -95,18 +95,18 @@ public class LatestFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        firebaseRecyclerAdapter.startListening();
+        firestoreRecyclerAdapter.startListening();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        firebaseRecyclerAdapter.stopListening();
+        firestoreRecyclerAdapter.stopListening();
     }
 
     private void setAdapter() {
-
-        recyclerView.setAdapter(firebaseRecyclerAdapter);
+firestoreRecyclerAdapter = NewAdapter();
+        recyclerView.setAdapter(firestoreRecyclerAdapter);
     }
 
     @NonNull

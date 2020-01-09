@@ -27,14 +27,11 @@ public class NoticeActivity extends AppCompatActivity {
         cardview = findViewById(R.id.cardview);
 
 
-        cardview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cardview.setCardBackgroundColor(Color.parseColor("#6C63Ff"));
-                Intent intent = new Intent(NoticeActivity.this, HomescreenActivity.class);
-                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                startActivity(intent);
-            }
+        cardview.setOnClickListener(v -> {
+            cardview.setCardBackgroundColor(Color.parseColor("#6C63Ff"));
+            Intent intent = new Intent(NoticeActivity.this, HomescreenActivity.class);
+            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+            startActivity(intent);
         });
 
     }

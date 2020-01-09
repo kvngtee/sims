@@ -27,6 +27,7 @@ import androidx.cardview.widget.CardView;
 import com.example.ecampus.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.Source;
@@ -62,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
         // Access a Cloud Firestore instance from your Activity
+        FirebaseApp.initializeApp(this);
         db = FirebaseFirestore.getInstance();
 
         sharedPrefs = getSharedPreferences("APP_PREFS", MODE_PRIVATE);

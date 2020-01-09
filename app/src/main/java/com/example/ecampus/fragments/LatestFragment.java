@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +19,11 @@ import android.view.ViewGroup;
 import com.example.ecampus.R;
 import com.example.ecampus.adapters.ViewHolder;
 import com.example.ecampus.models.Blog;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 
 import java.util.Calendar;
@@ -48,7 +49,7 @@ public class LatestFragment extends Fragment {
                     .document(thisYear).collection(thisMonth);
     private Query query = News.orderBy("date", Query.Direction.DESCENDING);
 
-    private FirebaseRecyclerAdapter firebaseRecyclerAdapter;
+    private FirestoreRecyclerAdapter firebaseRecyclerAdapter;
 
     @BindView(R.id.myrecyclerview)
     RecyclerView recyclerView;
@@ -104,19 +105,19 @@ public class LatestFragment extends Fragment {
     }
 
     private void setAdapter() {
-        firebaseRecyclerAdapter = NewAdapter();
+
         recyclerView.setAdapter(firebaseRecyclerAdapter);
     }
 
     @NonNull
-    private FirebaseRecyclerAdapter<Blog, ViewHolder> NewAdapter() {
+    private FirestoreRecyclerAdapter<Blog, ViewHolder> NewAdapter() {
 
         FirestoreRecyclerOptions<Blog> options =
                 new FirestoreRecyclerOptions.Builder<Blog>()
                         .setQuery(query, Blog.class)
                         .setLifecycleOwner(this).build();
 
-        return new FirebaseRecyclerAdapter<Blog, ViewHolder>(options) {
+        return new FirestoreRecyclerAdapter<Blog, ViewHolder>(options) {
 
             @NonNull
             @Override
@@ -137,10 +138,10 @@ public class LatestFragment extends Fragment {
             }
 
             @Override
-            public void onError(@NonNull DatabaseError error) {
-                super.onError(error);
-                swipeRefreshLayout.setRefreshing(false);
-                Toasty.error(getActivity(), "Firestore error").show();
+            public void onError(@NonNull FirebaseFirestoreException e) {
+                super.onError(e);
+                Toasty.error(getActivity(), "Something went wrong").show();
+                Log.e("Friestore RCV", e.getMessage());
             }
         };
     }

@@ -8,58 +8,35 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ecampus.R;
+import com.example.ecampus.models.News;
 import com.squareup.picasso.Picasso;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class ViewHolder extends RecyclerView.ViewHolder {
 
-    View mView;
+    @BindView(R.id.news_title)
+    TextView Title;
+
+    @BindView(R.id.news_desc)
+    TextView Desc;
+
+    @BindView(R.id.dateposted)
+    TextView NewsDate;
+
+    @BindView(R.id.news_image)
+    ImageView NewsImage;
 
     public ViewHolder(View itemView) {
-
         super(itemView);
-        mView = itemView;
-
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mClickListener.onItemClick(view, getAdapterPosition());
-            }
-        });
-
-        itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                mClickListener.onItemLongClick(view, getAdapterPosition());
-                return true;
-            }
-        });
-
+        ButterKnife.bind(this, itemView);
     }
 
-
-    public void setDetails(Context ctx, String title, String desc, String image, String date) {
-
-        TextView mtitletv = mView.findViewById(R.id.news_title);
-        TextView medesctv = mView.findViewById(R.id.news_desc);
-        TextView mdatetv = mView.findViewById(R.id.dateposted);
-        ImageView mimagetv = mView.findViewById(R.id.news_image);
-
-        mtitletv.setText(title);
-        medesctv.setText(desc);
-        mdatetv.setText(date);
-        Picasso.get().load(image).into(mimagetv);
+    public void bind(Context ctx, News news) {
+        Title.setText(news.getTitle());
+        Desc.setText(news.getDesc());
+        NewsDate.setText(news.getDate().toString());
+        Picasso.get().load(news.getImage()).placeholder(R.drawable.logo).into(NewsImage);
     }
-
-    private ViewHolder.ClickListener mClickListener;
-
-    public interface ClickListener {
-        void onItemClick(View view, int position);
-
-        void onItemLongClick(View view, int position);
-    }
-
-    public void setOnClickListener(ViewHolder.ClickListener clickListener) {
-        mClickListener = clickListener;
-    }
-
 }

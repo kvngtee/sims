@@ -23,17 +23,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.ecampus.R;
+import com.github.curioustechizen.ago.RelativeTimeTextView;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 public class PostDetailActivity extends AppCompatActivity {
 
-    TextView mtitleTv, mdescTv,mdateTv,mPosterTv;
+    TextView mtitleTv, mdescTv;
+    RelativeTimeTextView mdateTv;
     ImageView mImageIv;
     Bitmap bitmap;
     Picasso picasso;
@@ -66,8 +69,6 @@ public class PostDetailActivity extends AppCompatActivity {
         mdescTv = findViewById(R.id.news_desc);
         mImageIv = findViewById(R.id.news_image);
         mdateTv = findViewById(R.id.dateposted);
-
-
         mdescTv.setMovementMethod(new ScrollingMovementMethod());
 
         //get data from intent
@@ -75,13 +76,11 @@ public class PostDetailActivity extends AppCompatActivity {
         String title = getIntent().getStringExtra("title");
         String desc = getIntent().getStringExtra("desc");
         String date = getIntent().getStringExtra("date");
-        String poster = getIntent().getStringExtra("poster");
 
         //set data views
         mtitleTv.setText(title);
         mdescTv.setText(desc);
         mdateTv.setText(date);
-        mPosterTv.setText(poster);
         Picasso.get().load(image).into(mImageIv);
 
 
@@ -131,12 +130,12 @@ public class PostDetailActivity extends AppCompatActivity {
             String s = mtitleTv.getText().toString() + "\n" + mdescTv.getText().toString();
 
 
-            File file = new File(getExternalCacheDir(),"sample.png");
+            File file = new File(getExternalCacheDir(), "sample.png");
             FileOutputStream fout = new FileOutputStream(file);
-            bitmap.compress(Bitmap.CompressFormat.PNG,100, fout);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fout);
             fout.flush();
             fout.close();
-            file.setReadable(true,false);
+            file.setReadable(true, false);
 
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
             StrictMode.setVmPolicy(builder.build());
@@ -149,9 +148,8 @@ public class PostDetailActivity extends AppCompatActivity {
             intent.setType("image/png");
             startActivity(Intent.createChooser(intent, "Share via"));
 
-        }
-        catch (Exception e){
-            Toast.makeText(this,e.getMessage(),Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
         }
     }
@@ -164,7 +162,7 @@ public class PostDetailActivity extends AppCompatActivity {
         //path to external storage
         File path = Environment.getExternalStorageDirectory();
         //create folder named eCampus
-        File dir = new File(path+"/eCampus/");
+        File dir = new File(path + "/eCampus/");
         dir.mkdirs();
         //image name
         String imageName = timestamp + ".PNG";
@@ -172,14 +170,13 @@ public class PostDetailActivity extends AppCompatActivity {
         OutputStream out;
         try {
             out = new FileOutputStream(file);
-            bitmap.compress(Bitmap.CompressFormat.PNG,100, out);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
             out.flush();
             out.close();
-            Toast.makeText(this,imageName+" saved to"+ dir,Toast.LENGTH_SHORT).show();
-        }
-        catch (Exception e){
+            Toast.makeText(this, imageName + " saved to" + dir, Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
             //failed saving image
-            Toast.makeText(this,e.getMessage(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -192,10 +189,9 @@ public class PostDetailActivity extends AppCompatActivity {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     //permission granted save image
                     saveImage();
-                }
-                else{
+                } else {
                     //permission denied
-                    Toast.makeText(this,"enable permission to save image!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "enable permission to save image!", Toast.LENGTH_SHORT).show();
                 }
             }
 

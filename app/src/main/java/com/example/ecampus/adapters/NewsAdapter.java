@@ -89,9 +89,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
                     postdetails.putExtra("date",mList.get(postion).getDate());
                     mcontext.startActivity(postdetails);
 
-
-
-                    Toast.makeText(v.getContext(), "post details", Toast.LENGTH_SHORT).show();
                 }
             });
 

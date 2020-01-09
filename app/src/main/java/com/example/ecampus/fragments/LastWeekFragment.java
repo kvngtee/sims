@@ -27,7 +27,7 @@ public class LastWeekFragment extends Fragment {
     private List<News> mList = new ArrayList<>();
     private View view;
     private RecyclerView recyclerView;
-    private  SwipeRefreshLayout swipeRefreshLayout;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     public LastWeekFragment() {
         // Required empty public constructor
@@ -38,17 +38,17 @@ public class LastWeekFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-         view = inflater.inflate(R.layout.fragment_newsfeed, container, false);
+        view = inflater.inflate(R.layout.fragment_newsfeed, container, false);
         mList = ((NewsfeedActivity) getActivity()).getNewsList();
 
-         swipeRefreshLayout = view.findViewById(R.id.swipeRefresh);
-         recyclerView = view.findViewById(R.id.myrecyclerview);
-     refreshRecyclerView();
-     swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefresh);
+        recyclerView = view.findViewById(R.id.myrecyclerview);
+        refreshRecyclerView();
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                    refreshRecyclerView();
-                    swipeRefreshLayout.setRefreshing(false);
+                refreshRecyclerView();
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
 
@@ -56,8 +56,8 @@ public class LastWeekFragment extends Fragment {
     }
 
     public void refreshRecyclerView() {
-        mList=   ((NewsfeedActivity)getActivity()).getNewsList();
-        NewsAdapter newsAdapter = new NewsAdapter( mList);
+        mList = ((NewsfeedActivity) getActivity()).getNewsList();
+        NewsAdapter newsAdapter = new NewsAdapter(mList);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyclerView.setAdapter(newsAdapter);
     }

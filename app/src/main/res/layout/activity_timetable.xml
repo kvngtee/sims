@@ -57,14 +57,14 @@
         android:id="@+id/info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:lineSpacingExtra="3dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:fontFamily="@font/proximalight"
-        android:text="This section contains the official timetables from the \nschool administration."
+        android:text="This section contains official timetables from the school administration."
         android:textColor="#ACACAC"
-        android:textSize="15sp" />
+        android:textSize="12sp" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/lecturesttb"

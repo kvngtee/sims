@@ -11,9 +11,10 @@ import android.view.WindowManager;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
+
 import com.example.ecampus.R;
 import com.example.ecampus.adapters.ViewPagerAdapter;
-import com.example.ecampus.models.Blog;
+import com.example.ecampus.models.News;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
@@ -38,11 +39,11 @@ public class NewsfeedActivity extends AppCompatActivity {
     TabLayout tabLayout;
 
     ViewPager viewPager;
-    List<Blog> latestList = new ArrayList<>();
-    List<Blog> yesterdaysList = new ArrayList<>();
-    List<Blog> lastweeksList = new ArrayList<>();
-    List<Blog> olderList = new ArrayList<>();
-    List<Blog> mList = new ArrayList<>();
+    List<News> latestList = new ArrayList<>();
+    List<News> yesterdaysList = new ArrayList<>();
+    List<News> lastweeksList = new ArrayList<>();
+    List<News> olderList = new ArrayList<>();
+    List<News> mList = new ArrayList<>();
 
     String thisYear, thisMonth;
 
@@ -62,7 +63,6 @@ public class NewsfeedActivity extends AppCompatActivity {
 
         profile = findViewById(R.id.userpic);
         tabLayout = findViewById(R.id.tablayout);
-
         viewPager = findViewById(R.id.myViewPager);
         viewPager.setAdapter(new ViewPagerAdapter(getApplicationContext(), getSupportFragmentManager()));
         tabLayout.setupWithViewPager(viewPager);
@@ -76,7 +76,7 @@ public class NewsfeedActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-              thisYear = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+        thisYear = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
         thisMonth = DateFormat.format("MM", new Date()).toString();
 
         db = FirebaseFirestore.getInstance();
@@ -99,7 +99,7 @@ public class NewsfeedActivity extends AppCompatActivity {
 
                 // Loop through the snapshot
                 for (DocumentChange doc : snapshots.getDocumentChanges()) {
-                    Blog newBlog = new Blog(doc.getDocument().getId(), doc.getDocument().getString("image"),
+                    News newNews = new News(doc.getDocument().getId(), doc.getDocument().getString("image"),
                             doc.getDocument().getString("title"),
                             doc.getDocument().getString("desc"),
                             doc.getDocument().getDate("date"));
@@ -111,19 +111,19 @@ public class NewsfeedActivity extends AppCompatActivity {
                     int daysDiff = (int) (diff / (1000 * 60 * 60 * 24));
                     if (daysDiff <= 0) {
                         Log.i("TODAY", "It's today");
-                        latestList.add(newBlog);
-                     } else if (daysDiff == 1) {
+                        latestList.add(newNews);
+                    } else if (daysDiff == 1) {
                         Log.i("YESTERDAY", "It's was yesterday");
-                        yesterdaysList.add(newBlog);
-                     } else if (daysDiff > 1 && daysDiff <= 7) {
+                        yesterdaysList.add(newNews);
+                    } else if (daysDiff > 1 && daysDiff <= 7) {
                         Log.i("Last Week", "This was Last Week");
-                        lastweeksList.add(newBlog);
-                     } else if (daysDiff > 7) {
+                        lastweeksList.add(newNews);
+                    } else if (daysDiff > 7) {
                         Log.i("OLDER", "This is too Old");
-                        olderList.add(newBlog);
+                        olderList.add(newNews);
                     }
                     getNewsList();
-                    }
+                }
             }
         });
 
@@ -148,7 +148,7 @@ public class NewsfeedActivity extends AppCompatActivity {
     }
 
 
-    public List<Blog> getNewsList() {
+    public List<News> getNewsList() {
         switch (tabLayout.getSelectedTabPosition()) {
             case 0:
             default:
@@ -159,7 +159,7 @@ public class NewsfeedActivity extends AppCompatActivity {
                 return lastweeksList;
             case 3:
                 return olderList;
-          }
+        }
     }
 
 

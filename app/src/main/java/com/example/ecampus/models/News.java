@@ -2,7 +2,7 @@ package com.example.ecampus.models;
 
 import java.util.Date;
 
-public class Blog {
+public class News {
 
     private String id;
     private String image;
@@ -10,7 +10,7 @@ public class Blog {
     private String desc;
     private Date date;
 
-    public Blog(String id, String image, String title, String desc, Date date) {
+    public News(String id, String image, String title, String desc, Date date) {
         this.id = id;
         this.image = image;
         this.title = title;
@@ -60,7 +60,7 @@ public class Blog {
     }
 
 
-    public Blog(){
+    public News(){
 
     }
 }

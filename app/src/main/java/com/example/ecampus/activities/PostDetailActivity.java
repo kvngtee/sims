@@ -66,7 +66,6 @@ public class PostDetailActivity extends AppCompatActivity {
         mdescTv = findViewById(R.id.news_desc);
         mImageIv = findViewById(R.id.news_image);
         mdateTv = findViewById(R.id.dateposted);
-        mPosterTv = findViewById(R.id.postedBy);
 
 
         mdescTv.setMovementMethod(new ScrollingMovementMethod());

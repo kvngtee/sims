@@ -3,17 +3,21 @@
     <words>
       <w>accalready</w>
       <w>accalreadylogin</w>
+      <w>acceptdark</w>
       <w>addcamera</w>
       <w>adminimage</w>
       <w>agreementtb</w>
       <w>alreadyhaveacc</w>
       <w>alreadyhaveacclogin</w>
       <w>androidhive</w>
+      <w>appfeedback</w>
       <w>appname</w>
       <w>asiedu</w>
       <w>backbutton</w>
       <w>bluesquare</w>
+      <w>btnlater</w>
       <w>bubblebtn</w>
+      <w>bugreport</w>
       <w>callintent</w>
       <w>cameraicon</w>
       <w>cammpus</w>
@@ -31,6 +35,7 @@
       <w>confirmpasswordedittext</w>
       <w>darkmode</w>
       <w>darkmodetoggle</w>
+      <w>darkmodetogglebtn</w>
       <w>dateposted</w>
       <w>departedittext</w>
       <w>descs</w>
@@ -64,6 +69,7 @@
       <w>fout</w>
       <w>fragement</w>
       <w>fragmentstyle</w>
+      <w>galaxystore</w>
       <w>goback</w>
       <w>googlebtn</w>
       <w>hdsckk</w>
@@ -80,6 +86,7 @@
       <w>instagram</w>
       <w>kldshvciohodsichoisd</w>
       <w>kvngtee</w>
+      <w>lastweeks</w>
       <w>lecturesttb</w>
       <w>lecturettb</w>
       <w>likebtn</w>
@@ -120,7 +127,11 @@
       <w>newsfeedcv</w>
       <w>newsfeedtb</w>
       <w>nextbtn</w>
+      <w>noticecattv</w>
+      <w>noticedatetv</w>
       <w>noticetb</w>
+      <w>noticetext</w>
+      <w>noticetv</w>
       <w>notificationtoggle</w>
       <w>notificationtogglebtn</w>
       <w>nterms</w>
@@ -129,6 +140,8 @@
       <w>passtitle</w>
       <w>passwordedittext</w>
       <w>personaldetails</w>
+      <w>postdetails</w>
+      <w>postion</w>
       <w>preloader</w>
       <w>prevbtn</w>
       <w>pristina</w>
@@ -139,6 +152,7 @@
       <w>proximabold</w>
       <w>proximalight</w>
       <w>proximasemibold</w>
+      <w>ratedark</w>
       <w>raylay</w>
       <w>recordtb</w>
       <w>registerbtn</w>

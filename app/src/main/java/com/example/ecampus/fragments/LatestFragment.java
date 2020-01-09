@@ -17,26 +17,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ecampus.R;
-import com.example.ecampus.adapters.ViewHolder;
-import com.example.ecampus.models.Blog;
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
 
-import java.util.Calendar;
-import java.util.Date;
+import com.example.ecampus.activities.NewsfeedActivity;
+import com.example.ecampus.adapters.NewsAdapter;
+import com.example.ecampus.models.News;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import es.dmoral.toasty.Toasty;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class LatestFragment extends Fragment {
+
 
     private View view;
 
@@ -95,54 +87,5 @@ public class LatestFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        firestoreRecyclerAdapter.startListening();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        firestoreRecyclerAdapter.stopListening();
-    }
-
-    private void setAdapter() {
-firestoreRecyclerAdapter = NewAdapter();
-        recyclerView.setAdapter(firestoreRecyclerAdapter);
-    }
-
-    @NonNull
-    private FirestoreRecyclerAdapter<Blog, ViewHolder> NewAdapter() {
-
-        FirestoreRecyclerOptions<Blog> options =
-                new FirestoreRecyclerOptions.Builder<Blog>()
-                        .setQuery(query, Blog.class)
-                        .setLifecycleOwner(this).build();
-
-        return new FirestoreRecyclerAdapter<Blog, ViewHolder>(options) {
-
-            @NonNull
-            @Override
-            public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                return new ViewHolder(LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.news_row, parent, false));
-            }
-
-            @Override
-            protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Blog model) {
-                holder.bind(getActivity(), model);
-            }
-
-            @Override
-            public void onDataChanged() {
-                super.onDataChanged();
-                swipeRefreshLayout.setRefreshing(false);
-            }
-
-            @Override
-            public void onError(@NonNull FirebaseFirestoreException e) {
-                super.onError(e);
-                Toasty.error(getActivity(), "Something went wrong").show();
-                Log.e("Friestore RCV", e.getMessage());
-            }
-        };
     }
 }

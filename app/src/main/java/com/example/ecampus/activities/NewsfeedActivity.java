@@ -47,6 +47,8 @@ public class NewsfeedActivity extends AppCompatActivity {
 
     String thisYear, thisMonth;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +59,7 @@ public class NewsfeedActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
         SharedPreferences sharedPrefs = getSharedPreferences("APP_PREFS", MODE_PRIVATE);
+
 
         profile = findViewById(R.id.userpic);
         tabLayout = findViewById(R.id.tablayout);
